@@ -1,0 +1,12 @@
+body {
+  padding: 5px
+}
+.Category {
+  color: grey;
+}
+button {
+  color: red;
+}
+.active {
+ color: black;
+}
