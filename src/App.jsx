@@ -3,36 +3,40 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './index.css'
 
-function ProjectList(props) {
-  const {project} = props;
-  return (
-    <div>
-      <img
-        className="ProjectList"
-        src={project.img}
-      /> 
-      <div className="Category">{project.category}</div>
- 
-    </div>
-  );  
+class ProjectList extends Component{
+  constructor(props) {
+    super(props);
+  } 
+  
+  render(){
+    return (
+      <div key={this.props.project.id} >
+        <img
+          className="ProjectList"
+          src={this.props.project.img}
+        /> 
+        <div  className="Category" >{this.props.project.category}</div>
+      </div>
+    );  
+  }
 }
 
 
-function ToolBar(props) {
-  const filters = props.filters;
-  const activeF = props.activeF
-  const listItems = filters.map((filter) =>
-    <button key={filter.toString()} className={filter == activeF?"active":filter.toString()} onClick={props.onSwitch}>
-      {filter}
-    </button> 
+class ToolBar extends Component{
+  constructor(props) {
+    super(props);
+  } 
     
-  );
+  render(){
+    return (
+      this.props.filters.map((filter) =>
+    <button key={filter.toString()} className={filter == this.props.activeF?"active":filter.toString()} onClick={this.props.onSwitch}>
+      {filter}
+    </button>    
+      )
+    )
 
-  return (
-     <div>
-       {listItems}
-     </div>
-  );
+  }
 }
 
 class Portfolio extends Component{
@@ -40,54 +44,71 @@ class Portfolio extends Component{
     super(props);
     this.state = {isToggleOn: "All"}
     this.projects = [{
+      id:1,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
       category: "Business Cards"
       }, {
+      id:2,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
       category: "Websites"
       }, {
+      id:3,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
       category: "Websites"
       }, {
+      id:4,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/codystretch.jpg",
       category: "Websites"
       }, {
+      id:5,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_003.jpg",
       category: "Business Cards"
       }, {
+      id:6,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290.png",
       category: "Websites"
       }, {
+      id:7,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
       category: "Websites"
       }, {
+      id:8,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
       category: "Business Cards"
       }, {
+      id:9,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_1.png",
       category: "Websites"
       }, {
+      id:10,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_2.png",
       category: "Flayers"
       }, {
+      id:11,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/the_ninetys_brand.jpg",
       category: "Websites"
       }, {
+      id:12,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/dia.jpg",
       category: "Business Cards"
       }, {
+      id:13,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197.jpg",
       category: "Websites"
       }, {
+      id:14,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
       category: "Websites"
       }, {
+      id:15,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
       category: "Business Cards"
       }, {
+      id:16,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197_1.jpg",
       category: "Websites"
       }, {
+      id:17,
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
       category: "Flayers"
       }] 
@@ -126,15 +147,11 @@ class Portfolio extends Component{
             }))}} 
           />
           {activeProjects.map(project => (
-            <ProjectList project = {project} />        
+            <ProjectList  project = {project} />        
           ))}  
         </div>
       );
   }
 }
-ReactDOM.render(
-  <Portfolio />,
-  document.getElementById('root')
-);
 
 export default Portfolio
