@@ -29,8 +29,9 @@ class ToolBar extends Component{
     
   render(){
     return (
-      this.props.filters.map((filter) =>
-    <button key={filter.toString()} className={filter == this.props.activeF?"active":filter.toString()} onClick={this.props.onSwitch}>
+      this.props.filters.map((filter,index) =>
+    //<button key={filter.toString()} className={filter == this.props.activeF?"active":filter.toString()} onClick={this.props.onSwitch}>
+    <button key={index} className={filter == this.props.activeF?"active":filter.toString()} onClick={() => this.props.onSwitch(filter)}>
       {filter}
     </button>    
       )
@@ -142,8 +143,11 @@ class Portfolio extends Component{
           <ToolBar 
             filters={filters}
             activeF={this.state.isToggleOn}
-            onSwitch={(e)=>{this.setState(state => ({
-              isToggleOn: e.target.textContent
+            //onSwitch={(e)=>{this.setState(state => ({
+              //isToggleOn: e.target.textContent
+
+            onSwitch={(filter)=>{this.setState(state => ({
+                isToggleOn: filter
             }))}} 
           />
           {activeProjects.map(project => (
